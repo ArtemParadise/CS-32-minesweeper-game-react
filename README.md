@@ -79,4 +79,4 @@ src/
 
 ## License
 
-This project is for educational purposes as part of CS-31 coursework.
+This project is for educational purposes as part of Web-development coursework.
