@@ -1,0 +1,138 @@
+.gameWrapper {
+    display: grid;
+    place-items: center;
+    min-height: 100%;
+}
+
+.gameContainer {
+    background-color: #c0c0c0;
+    padding: 14px;
+    border: 3px outset #fff;
+    border-radius: 2px;
+    display: inline-block;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.gameHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 6px;
+    background-color: #c0c0c0;
+    border: 2px inset #808080;
+}
+
+.minesCounter, .timer {
+    background-color: #000;
+    color: #f00;
+    font-family: 'Courier New', monospace;
+    font-size: 28px;
+    padding: 4px 8px;
+    border: 2px inset #808080;
+    width: 76px;
+    text-align: center;
+}
+
+.restartButton {
+    background-color: #c0c0c0;
+    border: 2px outset #fff;
+    font-size: 28px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.restartButton:hover {
+    background-color: #d0d0d0;
+}
+
+.gameBoard {
+    display: grid;
+    grid-auto-rows: 32px; /* увеличенные клетки */
+    gap: 0;
+    background-color: #c0c0c0;
+    border: 2px inset #808080;
+}
+
+.cell {
+    width: 32px; /* увеличенные клетки */
+    height: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.closed {
+    border: 3px outset #fff;
+    background: #c0c0c0;
+}
+
+.opened {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    cursor: default;
+}
+
+.flagged {
+    background: #c0c0c0;
+}
+
+.flagged::after {
+    content: "🚩";
+}
+
+.mine.revealed {
+    background: #c0c0c0;
+}
+
+.mineTriggered {
+    background: #f00;
+}
+
+.mine::after {
+    content: "💣";
+}
+
+.num1 {
+    color: #00f;
+}
+
+.num2 {
+    color: #008000;
+}
+
+.num3 {
+    color: #f00;
+}
+
+.num4 {
+    color: #000080;
+}
+
+.num5 {
+    color: #800000;
+}
+
+.num6 {
+    color: #008080;
+}
+
+.num7 {
+    color: #000;
+}
+
+.num8 {
+    color: #808080;
+}
+
+.banner {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
