@@ -1,0 +1,27 @@
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .revealed {
+    background-color: #d0d0d0;
+    cursor: default;
+  }
+  
+  .mine {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  .flagged {
+    background-color: #ffd700;
+  }
