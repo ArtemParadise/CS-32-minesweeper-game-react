@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Game from './pages/Game'
 import MockGame from './pages/MockGame'
+import MinesweeperGame from './components/Moskovska-Olha/MinesweeperGame'
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route path="game" element={<Game />} />
         <Route path="mock-game" element={<MockGame />} />
       </Route>
+          <Route
+              path="/moskovska-olha"
+              element={<MinesweeperGame />}
+          />
     </Routes>
   )
 }
