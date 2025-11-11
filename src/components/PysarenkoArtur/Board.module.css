@@ -1,0 +1,8 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(9, 35px); 
+  grid-template-rows: repeat(9, 35px);
+  gap: 2px;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7), inset 0 0 5px rgba(0, 255, 0, 0.5);
+}

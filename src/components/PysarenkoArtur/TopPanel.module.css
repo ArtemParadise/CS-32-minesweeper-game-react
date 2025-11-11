@@ -1,0 +1,41 @@
+/* ====================== Верхня панель ====================== */
+.topPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ff00ff; 
+  background-color: #2a002a; 
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.6), inset 0 0 5px rgba(255, 0, 255, 0.4);
+}
+
+.indicator {
+  background-color: #000000; 
+  color: #ff33cc; 
+  font-size: 1.8em;
+  padding: 5px 12px;
+  border: 2px solid #ff33cc;
+  box-shadow: 0 0 8px rgba(255, 51, 204, 0.8);
+  border-radius: 3px;
+}
+
+.notification {
+  margin: 0;
+  flex: 0 1 120px;
+  text-align: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 20px;
+}
+
+.success {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.error {
+  color: #ff3300;
+  text-shadow: 0 0 5px #ff3300;
+}
+

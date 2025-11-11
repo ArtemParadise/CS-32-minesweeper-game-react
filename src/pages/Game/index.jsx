@@ -38,8 +38,19 @@ function Game() {
       link: "#",
       difficulty: "Advanced",
       status: "Planning"
+    },
+    {
+      id: 5,
+      title: "Pysarenko Artur Game",
+      description: "Моя власна реалізація гри Minesweeper by Pysarenko Artur",
+      author: "Pysarenko Artur",
+      link: "/pysarenko-artur", // шлях до твоєї сторінки
+      difficulty: "Beginner",
+      status: "Complete"
     }
+    
   ]
+  
 
   const getStatusColor = (status) => {
     switch (status) {
