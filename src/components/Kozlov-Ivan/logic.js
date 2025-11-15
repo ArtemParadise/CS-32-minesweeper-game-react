@@ -5,23 +5,23 @@ export function createCell(hasMine = false) {
     return {hasMine, adjacentMines: 0, state: CellState.CLOSED, isFlagged: false};
 }
 
-export function inBounds(rows, cols, r, c) {
-    return r >= 0 && c >= 0 && r < rows && c < cols;
+export function inBounds(totalRows, totalCols, row, col) {
+    return row >= 0 && col >= 0 && row < totalRows && col < totalCols;
 }
 
 export function countNeighbourMines(field, row, col) {
-    const rows = field.length;
-    const cols = field[0].length;
-    let mines = 0;
-    for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-            if (dr === 0 && dc === 0) continue;
-            const nr = row + dr;
-            const nc = col + dc;
-            if (inBounds(rows, cols, nr, nc) && field[nr][nc].hasMine) mines++;
+    const totalRows = field.length;
+    const totalCols = field[0].length;
+    let mineCount = 0;
+    for (let deltaRow = -1; deltaRow <= 1; deltaRow++) {
+        for (let deltaCol = -1; deltaCol <= 1; deltaCol++) {
+            if (deltaRow === 0 && deltaCol === 0) continue;
+            const neighbourRow = row + deltaRow;
+            const neighbourCol = col + deltaCol;
+            if (inBounds(totalRows, totalCols, neighbourRow, neighbourCol) && field[neighbourRow][neighbourCol].hasMine) mineCount++;
         }
     }
-    return mines;
+    return mineCount;
 }
 
 export function generateField(cfg) {
@@ -33,47 +33,47 @@ export function generateField(cfg) {
     );
 
     const positions = [];
-    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) positions.push([r, c]);
+    for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) positions.push([row, col]);
     for (let i = positions.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [positions[i], positions[j]] = [positions[j], positions[i]];
     }
     for (let m = 0; m < mines; m++) {
-        const [r, c] = positions[m];
-        field[r][c].hasMine = true;
+        const [row, col] = positions[m];
+        field[row][col].hasMine = true;
     }
 
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            field[r][c].adjacentMines = countNeighbourMines(field, r, c);
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            field[row][col].adjacentMines = countNeighbourMines(field, row, col);
         }
     }
 
     return field;
 }
 
-export function floodOpen(field, startR, startC) {
-    const rows = field.length;
-    const cols = field[0].length;
-    const stack = [[startR, startC]];
-    const seen = new Set();
-    const key = (r, c) => `${r},${c}`;
+export function floodOpen(field, startRow, startCol) {
+    const totalRows = field.length;
+    const totalCols = field[0].length;
+    const stack = [[startRow, startCol]];
+    const visited = new Set();
+    const key = (row, col) => `${row},${col}`;
 
     while (stack.length) {
-        const [r, c] = stack.pop();
-        if (!inBounds(rows, cols, r, c)) continue;
-        if (seen.has(key(r, c))) continue;
-        seen.add(key(r, c));
+        const [row, col] = stack.pop();
+        if (!inBounds(totalRows, totalCols, row, col)) continue;
+        if (visited.has(key(row, col))) continue;
+        visited.add(key(row, col));
 
-        const cell = field[r][c];
+        const cell = field[row][col];
         if (cell.isFlagged) continue;
         if (cell.state !== CellState.OPENED) cell.state = CellState.OPENED;
 
         if (!cell.hasMine && cell.adjacentMines === 0) {
-            for (let dr = -1; dr <= 1; dr++) {
-                for (let dc = -1; dc <= 1; dc++) {
-                    if (dr === 0 && dc === 0) continue;
-                    stack.push([r + dr, c + dc]);
+            for (let deltaRow = -1; deltaRow <= 1; deltaRow++) {
+                for (let deltaCol = -1; deltaCol <= 1; deltaCol++) {
+                    if (deltaRow === 0 && deltaCol === 0) continue;
+                    stack.push([row + deltaRow, col + deltaCol]);
                 }
             }
         }
@@ -85,9 +85,9 @@ export function cloneField(field) {
 }
 
 export function allNonMinesOpened(field) {
-    for (let r = 0; r < field.length; r++) {
-        for (let c = 0; c < field[0].length; c++) {
-            const cell = field[r][c];
+    for (let row = 0; row < field.length; row++) {
+        for (let col = 0; col < field[0].length; col++) {
+            const cell = field[row][col];
             if (!cell.hasMine && cell.state !== CellState.OPENED) return false;
         }
     }
