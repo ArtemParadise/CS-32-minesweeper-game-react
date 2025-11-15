@@ -3,12 +3,12 @@ import styles from "./TopPanel.module.css";
 import { CELL_STATE } from "./gameLogic";
 
 export default function TopPanel({ game, timer, message }) {
-  // Показуємо кількість мін (5) навіть коли гра не почата
-  const flagsLeft = game 
-    ? game.minesCount - countFlags(game) 
+  // Показуємо кількість мін навіть коли гра ще не почата
+  const remainingFlags = game 
+    ? game.minesCount - countPlacedFlags(game) 
     : 5;
 
-  const notificationClass = message.includes("Виграш") 
+  const messageClass = message.includes("Виграш") 
     ? styles.success 
     : message.includes("Програш") 
     ? styles.error 
@@ -17,9 +17,9 @@ export default function TopPanel({ game, timer, message }) {
   return (
     <div className={styles.topPanel}>
       <div className={styles.indicator}>
-        <span>{String(flagsLeft).padStart(3, "0")}</span>
+        <span>{String(remainingFlags).padStart(3, "0")}</span>
       </div>
-      <h2 className={`${styles.notification} ${notificationClass}`}>
+      <h2 className={`${styles.notification} ${messageClass}`}>
         {message}
       </h2>
       <div className={styles.indicator}>
@@ -29,6 +29,7 @@ export default function TopPanel({ game, timer, message }) {
   );
 }
 
-function countFlags(game) {
-  return game.field.flat().filter((c) => c.state === CELL_STATE.FLAGGED).length;
+// Порахуємо кількість встановлених прапорців
+function countPlacedFlags(game) {
+  return game.field.flat().filter((cell) => cell.state === CELL_STATE.FLAGGED).length;
 }
