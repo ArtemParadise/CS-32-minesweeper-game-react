@@ -12,78 +12,78 @@ import {
 } from "./gameLogic";
 
 export default function Game() {
-  const [game, setGame] = useState(null);
-  const [timer, setTimer] = useState(0);
-  const intervalIdRef = useRef(null);
-  const [started, setStarted] = useState(false);
-  const [message, setMessage] = useState("");
+  const [currentGame, setCurrentGame] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const timerRef = useRef(null);
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   // створення нової гри
   const startNewGame = () => {
-    const newGame = createGameState(9, 9, 5);
-    newGame.field = generateField(newGame.rows, newGame.cols, newGame.minesCount);
-    setGame(newGame);
-    setTimer(0);
-    setStarted(false);
-    setMessage("");
-    if (intervalIdRef.current) {
-      clearInterval(intervalIdRef.current);
-      intervalIdRef.current = null;
+    const newGameState = createGameState(9, 9, 5);
+    newGameState.field = generateField(newGameState.rows, newGameState.cols, newGameState.minesCount);
+    setCurrentGame(newGameState);
+    setElapsedTime(0);
+    setIsGameStarted(false);
+    setStatusMessage("");
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
   };
 
   // керування таймером
   useEffect(() => {
-    if (started && game && game.status === GAME_STATUS.IN_PROGRESS) {
-      if (!intervalIdRef.current) {
-        intervalIdRef.current = setInterval(() => setTimer((t) => t + 1), 1000);
+    if (isGameStarted && currentGame && currentGame.status === GAME_STATUS.IN_PROGRESS) {
+      if (!timerRef.current) {
+        timerRef.current = setInterval(() => setElapsedTime((t) => t + 1), 1000);
       }
     } else {
-      if (intervalIdRef.current) {
-        clearInterval(intervalIdRef.current);
-        intervalIdRef.current = null;
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
       }
     }
 
     return () => {
-      if (intervalIdRef.current) {
-        clearInterval(intervalIdRef.current);
-        intervalIdRef.current = null;
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
       }
     };
-  }, [started, game?.status]);
+  }, [isGameStarted, currentGame?.status]);
 
-  const handleLeftClick = (r, c) => {
-    if (!game || game.status !== GAME_STATUS.IN_PROGRESS) return;
+  const handleLeftClick = (rowIndex, colIndex) => {
+    if (!currentGame || currentGame.status !== GAME_STATUS.IN_PROGRESS) return;
 
     // запускаємо таймер при першому кліку
-    if (!started) setStarted(true);
+    if (!isGameStarted) setIsGameStarted(true);
 
-    const updated = structuredClone(game);
-    openCell(updated, r, c);
-    checkWin(updated);
-    setGame(updated);
+    const updatedGame = structuredClone(currentGame);
+    openCell(updatedGame, rowIndex, colIndex);
+    checkWin(updatedGame);
+    setCurrentGame(updatedGame);
 
-    if (updated.status === GAME_STATUS.WIN) {
-      setMessage("Виграш!");
-    } else if (updated.status === GAME_STATUS.LOSE) {
-      setMessage("Програш!");
+    if (updatedGame.status === GAME_STATUS.WIN) {
+      setStatusMessage("Виграш!");
+    } else if (updatedGame.status === GAME_STATUS.LOSE) {
+      setStatusMessage("Програш!");
     }
   };
 
-  const handleRightClick = (r, c) => {
-    if (!game || game.status !== GAME_STATUS.IN_PROGRESS) return;
-    const updated = structuredClone(game);
-    toggleFlag(updated, r, c);
-    setGame(updated);
+  const handleRightClick = (rowIndex, colIndex) => {
+    if (!currentGame || currentGame.status !== GAME_STATUS.IN_PROGRESS) return;
+    const updatedGame = structuredClone(currentGame);
+    toggleFlag(updatedGame, rowIndex, colIndex);
+    setCurrentGame(updatedGame);
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>💣 Neon Minesweeper 💣</h1>
       <div className={styles.gameContainer}>
-        <TopPanel game={game} timer={timer} message={message} />
-        <Board game={game} onLeftClick={handleLeftClick} onRightClick={handleRightClick} />
+        <TopPanel game={currentGame} timer={elapsedTime} message={statusMessage} />
+        <Board game={currentGame} onLeftClick={handleLeftClick} onRightClick={handleRightClick} />
       </div>
       <button className={styles.playBtn} onClick={startNewGame}>
         PLAY
