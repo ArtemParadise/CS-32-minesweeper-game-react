@@ -5,10 +5,10 @@ function Game() {
   const implementations = [
     {
       id: 1,
-      title: "Mock Minesweeper Game",
+      title: "Minesweeper Dima",
       description: "A fully functional minesweeper implementation with timer, flagging, and win/lose detection. This serves as an example for students.",
-      author: "Example Implementation",
-      link: "/mock-game",
+      author: "Dima Honcharuk",
+      link: "/honcharuk-dmytro",
       difficulty: "Beginner",
       status: "Complete"
     },
