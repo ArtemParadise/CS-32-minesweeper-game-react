@@ -1,0 +1,133 @@
+
+
+.minesweeper {
+    background: #FFFBFC;
+    border: 3px solid #FFFBFC;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    align-items: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: #808A9F;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.counter,
+.timer {
+    font-size: 24px;
+    font-family: monospace;
+    background: #FFFBFC;
+    color: red;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.newGame {
+    font-size: 20px;
+    background: #FFFBFC;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 0px;
+    color: red;
+    margin: 10px;
+}
+
+.board {
+    border: 5px solid #353342;
+    display: inline-grid;
+    grid-template-columns: repeat(9, 24px);
+    grid-template-rows: repeat(9, 24px);
+    background: #808A9F;
+    border-radius: 10px;
+    gap: 1px;
+}
+
+.cell {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.closed {
+    background: #a8b1c3;
+    border-top-color: #ffffff;
+    border-left-color: #dadada;
+    border-right-color: #747272;
+    border-bottom-color: #2d3838;
+}
+
+.open {
+    background: #e0e0e0;
+    border: 1px solid #a0a0a0;
+}
+
+.flag {
+    background: #c0c0c0;
+    color: red;
+}
+
+.mine {
+    background: black;
+    color: white;
+}
+
+.mineHit {
+    background: red;
+    color: black;
+    font-weight: bold;
+}
+
+
+.n1 {
+    color: blue;
+}
+
+.n2 {
+    color: green;
+}
+
+.n3 {
+    color: red;
+}
+
+.n4 {
+    color: navy;
+}
+
+.n5 {
+    color: brown;
+}
+
+.n6 {
+    color: teal;
+}
+
+.n7 {
+    color: black;
+}
+
+.n8 {
+    color: gray;
+}
