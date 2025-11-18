@@ -1,4 +1,21 @@
 {
+<<<<<<< HEAD
+    "name": "minesweeper-react",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-router-dom": "^6.21.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    }
+  }
+=======
   "name": "cs-31-minesweeper-game-react",
   "private": true,
   "version": "0.0.0",
@@ -26,3 +43,4 @@
     "vite": "^7.1.7"
   }
 }
+>>>>>>> a64ea1636681468957d7de97d7da79112c9d71d6
