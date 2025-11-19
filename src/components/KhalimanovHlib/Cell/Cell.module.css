@@ -1,0 +1,79 @@
+.cell {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background: #2a2a3e;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none; /* Щоб текст не виділявся при кліках */
+}
+
+.cell:hover {
+    background: #3a3a4e;
+    transform: scale(1.05);
+    z-index: 1; /* Щоб збільшена клітинка була поверх інших */
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+}
+
+.cell:disabled:hover {
+    transform: none;
+}
+
+.hidden {
+    background: linear-gradient(135deg, #4a4a5e 0%, #3a3a4e 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hidden:hover {
+    background: linear-gradient(135deg, #5a5a6e 0%, #4a4a5e 100%);
+}
+
+.revealed {
+    background: #1e1e2e;
+    border-color: #555;
+    cursor: default;
+}
+
+.revealed:hover {
+    transform: none;
+    background: #1e1e2e;
+}
+
+.mine {
+    background: #e74c3c;
+    color: #ffffff;
+    border-color: #c0392b;
+}
+
+.flagged {
+    background: #f39c12;
+    color: #ffffff;
+}
+
+/* Кольори для цифр */
+.number1 { color: #3498db; }
+.number2 { color: #27ae60; }
+.number3 { color: #e74c3c; }
+.number4 { color: #8e44ad; }
+.number5 { color: #f39c12; }
+.number6 { color: #e67e22; }
+.number7 { color: #2c3e50; }
+.number8 { color: #95a5a6; }
+
+@media (max-width: 768px) {
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
