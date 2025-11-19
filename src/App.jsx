@@ -1,9 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Game from './pages/Game'
 import MockGame from './pages/MockGame'
+import { MinesweeperGame } from "./components/Kozlov-Ivan/MinesweeperGame.jsx";
 
 import KhalimanovGame from './components/KhalimanovHlib/Minesweeper'
 
@@ -17,6 +18,10 @@ function App() {
                 <Route path="mock-game" element={<MockGame />} />
 
                 <Route path="khalimanov-hlib" element={<KhalimanovGame />} />
+                <Route
+                    path="/kozlov-ivan"
+                    element={<MinesweeperGame/>}
+                />
             </Route>
         </Routes>
     )
