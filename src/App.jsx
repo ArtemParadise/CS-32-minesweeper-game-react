@@ -6,14 +6,18 @@ import Game from './pages/Game'
 import MockGame from './pages/MockGame'
 import { MinesweeperGame } from "./components/Kozlov-Ivan/MinesweeperGame.jsx";
 
+import KhalimanovGame from './components/KhalimanovHlib/Minesweeper'
+
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Layout/>}>
-                <Route index element={<Home/>}/>
-                <Route path="about" element={<About/>}/>
-                <Route path="game" element={<Game/>}/>
-                <Route path="mock-game" element={<MockGame/>}/>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="game" element={<Game />} />
+                <Route path="mock-game" element={<MockGame />} />
+
+                <Route path="khalimanov-hlib" element={<KhalimanovGame />} />
                 <Route
                     path="/kozlov-ivan"
                     element={<MinesweeperGame/>}
